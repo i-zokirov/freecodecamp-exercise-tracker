@@ -31,6 +31,7 @@ exports.registerExercise = catchAsyncErrors(async (req, res) => {
         const response = {
             ...exercise._doc,
             username: user.username,
+            _id: user._id,
         };
         delete response.userId;
         response.date = response.date.toDateString();
