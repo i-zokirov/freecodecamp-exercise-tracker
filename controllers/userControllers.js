@@ -28,13 +28,14 @@ exports.registerExercise = catchAsyncErrors(async (req, res) => {
             date: req.body.date || new Date(),
             userId: user._id,
         });
+        exercise._doc.date = exercise._doc.date.toDateString();
+        delete exercise._doc.userId;
         const response = {
             exercise: { ...exercise._doc },
             username: user.username,
             _id: user._id,
         };
-        delete response.userId;
-        response.date = response.date.toDateString();
+
         res.json(response);
     } else {
         res.status(404).json({ error: "User not found" });
