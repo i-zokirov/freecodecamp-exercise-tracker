@@ -29,7 +29,7 @@ exports.registerExercise = catchAsyncErrors(async (req, res) => {
             userId: user._id,
         });
         const response = {
-            ...exercise._doc,
+            exercise: { ...exercise._doc },
             username: user.username,
             _id: user._id,
         };
